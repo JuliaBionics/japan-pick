@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JAPAN PICK | 일본 구매대행 전문몰</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='29' fill='%23fff' stroke='%23E0980C' stroke-width='1.6'/%3E%3Cpath d='M32 5 A27 27 0 0 1 32 59 A13.5 13.5 0 0 1 32 32 A13.5 13.5 0 0 0 32 5 Z' fill='%23F0483A'/%3E%3Cpath d='M32 5 A27 27 0 0 0 32 59 A13.5 13.5 0 0 0 32 32 A13.5 13.5 0 0 1 32 5 Z' fill='%231499B8'/%3E%3Ccircle cx='32' cy='18.5' r='5.2' fill='%23fff'/%3E%3Ccircle cx='32' cy='18.5' r='5.2' fill='none' stroke='%23F0483A' stroke-width='1.3'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #FFF8EF;
+    --surface: #FFFFFF;
+    --ink: #22303F;
+    --indigo: #1499B8;
+    --indigo-dark: #0B7690;
+    --vermillion: #F0483A;
+    --vermillion-dark: #CE3327;
+    --gold: #E0980C;
+    --gold-bg: #FFF3D9;
+    --green: #17A673;
+    --line: #F1E3C9;
+    --muted: #8B7E6E;
+    --hero-accent: #FFD666;
+    --font-display: 'Noto Sans KR', sans-serif;
+    --font-body: 'Noto Sans KR', sans-serif;
+    --radius: 10px;
+    --shadow: 0 4px 16px rgba(34,48,63,0.08);
+    --shadow-lg: 0 12px 32px rgba(34,48,63,0.16);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family: var(--font-body);
+    background: var(--bg);
+    color: var(--ink);
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  img,svg{display:block; max-width:100%;}
+  a{color:inherit; text-decoration:none;}
+  button{font-family:inherit; cursor:pointer; border:none;}
+  ul{list-style:none;}
+  .container{max-width:1200px; margin:0 auto; padding:0 24px;}
+  .eyebrow{
+    font-size:14px; font-weight:700; letter-spacing:0.06em; color: var(--vermillion);
+    text-transform:uppercase; display:flex; align-items:center; gap:8px; margin-bottom:10px;
+  }
+  .eyebrow::before{content:''; width:18px; height:2px; background:var(--vermillion); display:inline-block;}
+  h1,h2,h3{font-family:var(--font-display); color:var(--ink); font-weight:900;}
+  .section{padding:64px 0;}
+  .section-title{font-size:28px; margin-bottom:6px;}
+  .section-sub{color:var(--muted); font-size:15px; margin-bottom:32px;}
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    padding:14px 26px; border-radius:8px; font-weight:700; font-size:16px;
+    transition: transform .15s ease, box-shadow .15s ease;
+  }
+  .btn:hover{transform: translateY(-1px);}
+  .btn-primary{background:var(--vermillion); color:#fff; box-shadow:0 6px 18px rgba(193,59,52,0.28);}
+  .btn-primary:hover{background:var(--vermillion-dark);}
+  .btn-outline{background:#fff; color:var(--indigo); border:1.5px solid var(--indigo);}
+  .btn-outline:hover{background:var(--indigo); color:#fff;}
+  .btn-block{width:100%;}
+
+  /* ---------- TOP UTILITY BAR ---------- */
+  .topbar{background:var(--indigo-dark); color:#EAF0F7; font-size:13.5px;}
+  .topbar .container{display:flex; justify-content:space-between; align-items:center; height:38px;}
+  .topbar-tel{font-weight:700; letter-spacing:.02em;}
+  .topbar-links{display:flex; gap:18px;}
+  .topbar-links a{opacity:.9;}
+  .topbar-links a:hover{opacity:1; text-decoration:underline;}
+
+  /* ---------- HEADER ---------- */
+  header.main-header{background:var(--surface); border-bottom:1px solid var(--line); position:sticky; top:0; z-index:50;}
+  .header-row{display:flex; align-items:center; gap:28px; padding:18px 24px; max-width:1200px; margin:0 auto;}
+  .logo{font-size:26px; font-weight:900; color:var(--indigo); white-space:nowrap; display:flex; align-items:center; gap:10px; letter-spacing:.01em;}
+  .logo-mark{width:38px; height:38px; flex-shrink:0;}
+  .search-form{flex:1; display:flex; max-width:560px;}
+  .search-form input{
+    flex:1; border:2px solid var(--indigo); border-right:none; border-radius:8px 0 0 8px;
+    padding:13px 16px; font-size:16px; outline:none; font-family:inherit;
+  }
+  .search-form button{
+    background:var(--indigo); color:#fff; padding:0 22px; border-radius:0 8px 8px 0; font-size:16px; font-weight:700;
+  }
+  .header-actions{display:flex; align-items:center; gap:22px; font-size:14.5px; font-weight:500; white-space:nowrap;}
+  .header-actions .icon-label{display:flex; flex-direction:column; align-items:center; gap:4px; position:relative;}
+  .cart-count{
+    position:absolute; top:-8px; right:-12px; background:var(--vermillion); color:#fff; font-size:11px; font-weight:800;
+    border-radius:50%; width:19px; height:19px; display:flex; align-items:center; justify-content:center;
+  }
+
+  .category-nav{background:var(--indigo); }
+  .category-nav ul{display:flex; max-width:1200px; margin:0 auto; padding:0 24px; overflow-x:auto;}
+  .category-nav li{flex-shrink:0;}
+  .category-nav a{
+    display:block; padding:14px 20px; color:#DCE6F2; font-weight:700; font-size:15px; white-space:nowrap;
+    border-bottom:3px solid transparent;
+  }
+  .category-nav a:hover, .category-nav a.active{color:#fff; border-bottom-color:var(--vermillion);}
+  .category-nav a.special{color:var(--hero-accent);}
+  .category-nav a.special:hover{border-bottom-color:var(--hero-accent);}
+  .category-nav .nav-divider{width:1px; background:rgba(255,255,255,0.18); margin:10px 4px; flex-shrink:0;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative; overflow:hidden;
+    background:linear-gradient(135deg, #0B7690 0%, #1499B8 42%, #F0483A 100%);
+    background-image:
+      radial-gradient(circle at 15% 15%, rgba(255,255,255,0.10) 0, transparent 55%),
+      linear-gradient(135deg, #0B7690 0%, #1499B8 42%, #F0483A 100%),
+      url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="120" height="60"><path d="M0 30 Q15 10 30 30 T60 30 T90 30 T120 30" stroke="rgba(255,255,255,0.10)" fill="none" stroke-width="2"/><path d="M0 45 Q15 25 30 45 T60 45 T90 45 T120 45" stroke="rgba(255,255,255,0.07)" fill="none" stroke-width="2"/></svg>');
+  }
+  .hero .container{display:grid; grid-template-columns:1.1fr 0.9fr; gap:40px; align-items:center; padding-top:56px; padding-bottom:56px;}
+  .hero-eyebrow{color:var(--hero-accent); font-weight:700; font-size:14px; letter-spacing:.08em; margin-bottom:14px; display:flex; align-items:center; gap:8px;}
+  .hero-eyebrow::before{content:''; width:18px; height:2px; background:var(--hero-accent);}
+  .hero h1{color:#fff; font-size:42px; line-height:1.3; margin-bottom:18px;}
+  .hero h1 span{color:var(--hero-accent);}
+  .hero p{color:#FDF4EA; font-size:17px; margin-bottom:28px; max-width:480px;}
+  .hero-ctas{display:flex; gap:12px;}
+  .hero-visual{position:relative; height:320px;}
+  .route-svg{width:100%; height:100%;}
+
+  /* ---------- TRUST STRIP ---------- */
+  .trust-strip{background:#fff; border-bottom:1px solid var(--line);}
+  .trust-strip .container{display:grid; grid-template-columns:repeat(4,1fr); gap:0; padding-top:28px; padding-bottom:28px;}
+  .trust-item{display:flex; align-items:center; gap:14px; padding:0 20px; border-left:1px solid var(--line);}
+  .trust-item:first-child{border-left:none;}
+  .trust-item .ic{width:44px; height:44px; flex-shrink:0; color:var(--indigo);}
+  .trust-item strong{display:block; font-size:15.5px; margin-bottom:2px;}
+  .trust-item span{color:var(--muted); font-size:13.5px;}
+
+  /* ---------- CALCULATOR (SIGNATURE) ---------- */
+  .calc-section{background:var(--gold-bg); border-top:1px solid #F5D999; border-bottom:1px solid #F5D999;}
+  .calc-wrap{display:grid; grid-template-columns:0.9fr 1.1fr; gap:48px; align-items:center;}
+  .calc-copy h2{font-size:30px; margin-bottom:14px;}
+  .calc-copy p{color:#5B4C33; margin-bottom:20px; max-width:420px;}
+  .calc-copy ul{display:flex; flex-direction:column; gap:10px;}
+  .calc-copy li{display:flex; align-items:center; gap:10px; font-size:15px; color:#5B4C33; font-weight:500;}
+  .calc-copy li::before{content:'✓'; color:var(--green); font-weight:900;}
+  .calc-card{
+    background:#fff; border-radius:16px; box-shadow:var(--shadow-lg); padding:32px; border:1px solid #F5D999;
+  }
+  .calc-field{margin-bottom:18px;}
+  .calc-field label{display:block; font-weight:700; font-size:14.5px; margin-bottom:8px; color:var(--ink);}
+  .calc-input-row{display:flex; align-items:center; gap:10px;}
+  .calc-input-row .yen-input{
+    flex:1; position:relative;
+  }
+  .calc-input-row .yen-input span{
+    position:absolute; left:14px; top:50%; transform:translateY(-50%); color:var(--muted); font-weight:700;
+  }
+  .calc-input-row input[type=number]{
+    width:100%; padding:13px 14px 13px 32px; border:1.5px solid var(--line); border-radius:8px; font-size:17px;
+    font-weight:700; font-family:inherit;
+  }
+  .calc-input-row input[type=number]:focus{outline:none; border-color:var(--indigo);}
+  .qty-stepper{display:flex; align-items:center; border:1.5px solid var(--line); border-radius:8px; overflow:hidden;}
+  .qty-stepper button{width:40px; height:48px; background:#F5F3EE; font-size:18px; font-weight:700; color:var(--indigo);}
+  .qty-stepper input{width:44px; text-align:center; border:none; font-size:16px; font-weight:700; font-family:inherit;}
+  .calc-breakdown{margin-top:22px; border-top:2px dashed #F5D999; padding-top:18px;}
+  .calc-row{display:flex; justify-content:space-between; font-size:14.5px; color:var(--muted); padding:5px 0;}
+  .calc-row.total{
+    color:var(--ink); font-size:19px; font-weight:900; border-top:1px solid var(--line); margin-top:8px; padding-top:14px;
+  }
+  .calc-row.total span:last-child{color:var(--vermillion);}
+  .calc-note{font-size:12.5px; color:var(--muted); margin-top:10px; line-height:1.5;}
+
+  /* ---------- PRODUCT GRID ---------- */
+  .product-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:22px;}
+  .product-card{
+    background:#fff; border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; cursor:pointer;
+    transition:box-shadow .15s ease, transform .15s ease; display:flex; flex-direction:column;
+  }
+  .product-card:hover{box-shadow:var(--shadow-lg); transform:translateY(-3px);}
+  .product-thumb{
+    aspect-ratio:1/1; display:flex; align-items:center; justify-content:center; position:relative;
+  }
+  .product-thumb svg{width:56%; height:56%;}
+  .badge{
+    position:absolute; top:10px; left:10px; background:var(--vermillion); color:#fff; font-size:11.5px;
+    font-weight:800; padding:4px 9px; border-radius:5px;
+  }
+  .badge.gold{background:var(--gold);}
+  .product-info{padding:16px; display:flex; flex-direction:column; gap:6px; flex:1;}
+  .product-cat{font-size:12px; color:var(--muted); font-weight:700;}
+  .origin-tag{color:var(--green); font-weight:800;}
+  .product-name{font-size:15.5px; font-weight:700; line-height:1.4; min-height:44px;}
+  .price-jp{font-size:13px; color:var(--muted); text-decoration:line-through;}
+  .price-final{font-size:19px; font-weight:900; color:var(--ink);}
+  .price-final small{font-size:13px; font-weight:700; color:var(--vermillion);}
+  .rating{font-size:13px; color:var(--muted); display:flex; gap:4px; align-items:center;}
+  .rating .stars{color:#E0A831;}
+
+  /* ---------- CATEGORY SECTION VARIANTS ---------- */
+  .julia-section{background:linear-gradient(180deg,var(--gold-bg) 0%, #fff 100%); border-top:3px solid var(--gold); border-bottom:1px solid #F5D999;}
+  .julia-banner{
+    display:flex; align-items:center; gap:14px; background:#fff; border:1.5px solid #F5D999; border-radius:10px;
+    padding:14px 18px; margin-bottom:28px; flex-wrap:wrap;
+  }
+  .julia-flag{
+    background:var(--gold); color:#fff; font-size:12px; font-weight:900; letter-spacing:.04em;
+    padding:6px 12px; border-radius:6px; flex-shrink:0;
+  }
+  .julia-banner p{font-size:14px; color:#5B4C33; margin:0;}
+  .julia-banner p strong{color:var(--ink);}
+  .julia-header{display:flex; align-items:center; justify-content:space-between; margin-bottom:28px; flex-wrap:wrap; gap:16px;}
+  .julia-title{display:flex; align-items:center; gap:14px;}
+  .julia-mark{
+    width:52px; height:52px; border-radius:50%; background:var(--gold); color:#fff; display:flex; align-items:center;
+    justify-content:center; font-family:var(--font-display); font-weight:900; font-size:20px; flex-shrink:0;
+  }
+  .julia-title h2{font-size:26px; margin-bottom:2px;}
+  .julia-title p{color:#8A6B34; font-size:14px; font-weight:500;}
+  .view-more{font-weight:700; color:var(--indigo); font-size:14.5px; display:flex; align-items:center; gap:6px;}
+  .view-more:hover{text-decoration:underline;}
+
+  /* ---------- PROCESS ---------- */
+  .process-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:0; position:relative;}
+  .process-step{text-align:center; padding:0 18px; position:relative;}
+  .process-step::after{
+    content:''; position:absolute; top:34px; right:-18px; width:36px; height:2px; background:var(--line);
+  }
+  .process-step:last-child::after{display:none;}
+  .step-num{
+    width:68px; height:68px; border-radius:50%; background:var(--indigo); color:#fff; font-family:var(--font-display);
+    font-weight:900; font-size:24px; display:flex; align-items:center; justify-content:center; margin:0 auto 18px;
+  }
+  .process-step h3{font-size:17px; margin-bottom:8px;}
+  .process-step p{font-size:14px; color:var(--muted); line-height:1.5;}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--indigo-dark); color:#B9C6D6; padding:52px 0 28px;}
+  .footer-grid{display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:36px; margin-bottom:36px;}
+  .footer-grid h4{color:#fff; font-size:15px; margin-bottom:16px; font-family:var(--font-body); font-weight:700;}
+  .footer-grid li{margin-bottom:9px; font-size:14px;}
+  .footer-grid li a:hover{color:#fff; text-decoration:underline;}
+  .footer-logo{font-size:22px; font-weight:900; color:#fff; margin-bottom:14px; display:flex; align-items:center; gap:10px;}
+  .footer-logo .logo-mark{width:30px; height:30px;}
+  .footer-grid p{font-size:13.5px; line-height:1.7; color:#9DACC0;}
+  .footer-bottom{border-top:1px solid rgba(255,255,255,0.12); padding-top:22px; font-size:12.5px; color:#8493A8; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;}
+
+  /* ---------- CART DRAWER ---------- */
+  .overlay{
+    position:fixed; inset:0; background:rgba(27,42,61,0.45); opacity:0; pointer-events:none; transition:opacity .2s ease; z-index:90;
+  }
+  .overlay.open{opacity:1; pointer-events:auto;}
+  .cart-drawer{
+    position:fixed; top:0; right:0; height:100%; width:420px; max-width:92vw; background:#fff; z-index:100;
+    transform:translateX(100%); transition:transform .25s ease; display:flex; flex-direction:column; box-shadow:-8px 0 24px rgba(0,0,0,0.15);
+  }
+  .cart-drawer.open{transform:translateX(0);}
+  .cart-head{padding:20px 22px; border-bottom:1px solid var(--line); display:flex; justify-content:space-between; align-items:center;}
+  .cart-head h3{font-size:19px;}
+  .cart-close{font-size:24px; color:var(--muted); line-height:1;}
+  .cart-body{flex:1; overflow-y:auto; padding:18px 22px;}
+  .cart-empty{color:var(--muted); text-align:center; padding:60px 0; font-size:15px;}
+  .cart-item{display:flex; gap:12px; padding:16px 0; border-bottom:1px solid var(--line);}
+  .cart-item-thumb{width:64px; height:64px; border-radius:8px; background:#F5F3EE; flex-shrink:0; display:flex; align-items:center; justify-content:center;}
+  .cart-item-thumb svg{width:60%; height:60%;}
+  .cart-item-info{flex:1; min-width:0;}
+  .cart-item-info h4{font-size:14.5px; font-weight:700; margin-bottom:4px;}
+  .cart-item-info .cat{font-size:12px; color:var(--muted); margin-bottom:6px;}
+  .cart-item-price{font-weight:800; font-size:15px;}
+  .cart-item-remove{font-size:12.5px; color:var(--vermillion); font-weight:700; margin-top:6px;}
+  .cart-foot{padding:20px 22px; border-top:1px solid var(--line);}
+  .cart-total-row{display:flex; justify-content:space-between; font-size:14px; color:var(--muted); padding:4px 0;}
+  .cart-total-row.grand{font-size:19px; font-weight:900; color:var(--ink); border-top:1px solid var(--line); margin-top:8px; padding-top:12px;}
+  .cart-total-row.grand span:last-child{color:var(--vermillion);}
+
+  /* ---------- PRODUCT MODAL ---------- */
+  .modal-overlay{
+    position:fixed; inset:0; background:rgba(27,42,61,0.55); z-index:110; display:none; align-items:center; justify-content:center; padding:20px;
+  }
+  .modal-overlay.open{display:flex;}
+  .modal-card{
+    background:#fff; border-radius:14px; max-width:760px; width:100%; max-height:88vh; overflow-y:auto;
+    display:grid; grid-template-columns:1fr 1fr; box-shadow:var(--shadow-lg); position:relative;
+  }
+  .modal-close{position:absolute; top:14px; right:16px; font-size:24px; color:var(--muted); z-index:2;}
+  .modal-visual{background:#F5F3EE; display:flex; align-items:center; justify-content:center; padding:40px;}
+  .modal-visual svg{width:70%; height:70%;}
+  .modal-info{padding:32px 30px;}
+  .modal-info .product-cat{margin-bottom:8px;}
+  .modal-info h3{font-size:21px; margin-bottom:12px; line-height:1.4;}
+  .modal-price-block{background:#F8F7F3; border-radius:10px; padding:16px; margin-bottom:18px;}
+  .modal-option{margin-bottom:16px;}
+  .modal-option label{display:block; font-weight:700; font-size:14px; margin-bottom:8px;}
+  .modal-option select{width:100%; padding:12px; border:1.5px solid var(--line); border-radius:8px; font-size:15px; font-family:inherit;}
+  .modal-meta{font-size:13px; color:var(--muted); line-height:1.7; margin-top:16px; border-top:1px solid var(--line); padding-top:16px;}
+  .modal-meta strong{color:var(--ink);}
+
+  .toast{
+    position:fixed; bottom:28px; left:50%; transform:translateX(-50%) translateY(20px); background:var(--ink); color:#fff;
+    padding:14px 26px; border-radius:8px; font-size:14.5px; font-weight:600; opacity:0; pointer-events:none;
+    transition:opacity .2s ease, transform .2s ease; z-index:200; white-space:nowrap;
+  }
+  .toast.show{opacity:1; transform:translateX(-50%) translateY(0);}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 980px){
+    .hero .container{grid-template-columns:1fr;}
+    .hero-visual{height:200px; order:-1;}
+    .calc-wrap{grid-template-columns:1fr;}
+    .trust-strip .container{grid-template-columns:repeat(2,1fr); row-gap:20px;}
+    .trust-item{border-left:none; padding:0;}
+    .product-grid{grid-template-columns:repeat(2,1fr);}
+    .process-grid{grid-template-columns:repeat(2,1fr); row-gap:36px;}
+    .process-step::after{display:none;}
+    .footer-grid{grid-template-columns:1fr 1fr;}
+    .modal-card{grid-template-columns:1fr;}
+  }
+  @media (max-width: 600px){
+    body{font-size:16px;}
+    .header-row{flex-wrap:wrap;}
+    .search-form{order:3; width:100%; max-width:none;}
+    .hero h1{font-size:30px;}
+    .product-grid{grid-template-columns:repeat(2,1fr); gap:14px;}
+    .footer-grid{grid-template-columns:1fr;}
+    .topbar-links a:nth-child(3){display:none;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ TOP BAR ============ -->
+<div class="topbar">
+  <div class="container">
+    <div class="topbar-tel">📞 고객센터 1588-0000 (평일 09:00~18:00)</div>
+    <div class="topbar-links">
+      <a href="#">공지사항</a>
+      <a href="#">이용가이드</a>
+      <a href="#">고객센터</a>
+    </div>
+  </div>
+</div>
+
+<!-- ============ HEADER ============ -->
+<header class="main-header">
+  <div class="header-row">
+    <a class="logo" href="#top">
+      <svg class="logo-mark" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="JAPAN PICK 로고">
+        <circle cx="32" cy="32" r="29" fill="#fff" stroke="var(--gold)" stroke-width="1.6"/>
+        <path d="M32 5 A27 27 0 0 1 32 59 A13.5 13.5 0 0 1 32 32 A13.5 13.5 0 0 0 32 5 Z" fill="var(--vermillion)"/>
+        <path d="M32 5 A27 27 0 0 0 32 59 A13.5 13.5 0 0 0 32 32 A13.5 13.5 0 0 1 32 5 Z" fill="var(--indigo)"/>
+        <circle cx="32" cy="18.5" r="5.2" fill="#fff"/>
+        <circle cx="32" cy="18.5" r="5.2" fill="none" stroke="var(--vermillion)" stroke-width="1.3"/>
+      </svg>
+      JAPAN PICK
+    </a>
+    <form class="search-form" onsubmit="return false;">
+      <input type="text" placeholder="찾으시는 일본 상품을 검색해보세요 (예: 줄리아포뮬러 에센스)">
+      <button type="submit">검색</button>
+    </form>
+    <div class="header-actions">
+      <a class="icon-label" href="#">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+        마이페이지
+      </a>
+      <a class="icon-label" id="cartBtn" href="#">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.6 13.4a2 2 0 0 0 2 1.6h9.8a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+        장바구니
+        <span class="cart-count" id="cartCount">0</span>
+      </a>
+    </div>
+  </div>
+  <nav class="category-nav">
+    <ul>
+      <li><a href="#julia" class="special">★ 줄리아포뮬러 한국전용관</a></li>
+      <li class="nav-divider" aria-hidden="true"></li>
+      <li><a href="#best" class="active">베스트</a></li>
+      <li><a href="#beauty">뷰티</a></li>
+      <li><a href="#health">건강식품</a></li>
+      <li><a href="#kitchen">주방용품</a></li>
+      <li><a href="#appliance">생활가전</a></li>
+      <li><a href="#character">캐릭터/굿즈</a></li>
+      <li><a href="#food">식품/과자</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="container">
+    <div class="hero-copy">
+      <div class="hero-eyebrow">일본 현지 구매대행 전문몰</div>
+      <h1>일본 매장 앞까지<br>가지 않아도, <span>그대로</span> 내 손안에</h1>
+      <p>일본 현지에서 직접 확인하고 구매합니다. 정가·환율·수수료를 미리 계산해 드리니, 결제 전에 최종 금액을 정확히 확인하실 수 있습니다.</p>
+      <div class="hero-ctas">
+        <a href="#calc" class="btn btn-primary">지금 견적 계산하기</a>
+        <a href="#best" class="btn btn-outline">인기 상품 보기</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <svg class="route-svg" viewBox="0 0 400 320" fill="none">
+        <path d="M60 260 Q160 40 340 90" stroke="var(--hero-accent)" stroke-width="2.5" stroke-dasharray="7 8" fill="none"/>
+        <circle cx="60" cy="260" r="9" fill="var(--hero-accent)"/>
+        <text x="40" y="292" fill="#FDF4EA" font-size="14" font-family="Noto Sans KR">일본</text>
+        <circle cx="340" cy="90" r="9" fill="#fff"/>
+        <text x="322" y="72" fill="#fff" font-size="14" font-family="Noto Sans KR">대한민국</text>
+        <g transform="translate(190,120) rotate(-24)">
+          <rect x="-22" y="-14" width="44" height="28" rx="4" fill="#fff" opacity="0.95"/>
+          <rect x="-16" y="-8" width="14" height="8" fill="var(--indigo)"/>
+          <rect x="2" y="-8" width="14" height="8" fill="var(--vermillion)"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TRUST STRIP ============ -->
+<section class="trust-strip">
+  <div class="container">
+    <div class="trust-item">
+      <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2 4 6v6c0 5 3.5 9 8 10 4.5-1 8-5 8-10V6l-8-4Z"/><path d="m9 12 2 2 4-4"/></svg>
+      <div><strong>정품 100% 보장</strong><span>일본 현지 매장 직접 구매</span></div>
+    </div>
+    <div class="trust-item">
+      <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="6" width="20" height="13" rx="2"/><path d="M2 10h20"/></svg>
+      <div><strong>안전결제 시스템</strong><span>결제대행사를 통한 안심 결제</span></div>
+    </div>
+    <div class="trust-item">
+      <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 7h11v9H3z"/><path d="M14 10h4l3 3v3h-7z"/><circle cx="7" cy="18" r="1.6"/><circle cx="18" cy="18" r="1.6"/></svg>
+      <div><strong>실시간 배송조회</strong><span>일본 출고부터 국내 도착까지</span></div>
+    </div>
+    <div class="trust-item">
+      <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 4h16v12H8l-4 4Z"/></svg>
+      <div><strong>1:1 상담 지원</strong><span>전화·카카오톡으로 편하게</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ JULIA FORMULA KOREA-EXCLUSIVE HALL ============ -->
+<section class="section julia-section" id="julia">
+  <div class="container">
+    <div class="julia-banner">
+      <span class="julia-flag">MADE IN KOREA</span>
+      <p>줄리아포뮬러는 <strong>일본 구매대행 상품이 아닌 국내 제조·유통 정식 제품</strong>입니다. 환율 계산이나 관부가세 없이, 국내 물류센터에서 바로 배송됩니다.</p>
+    </div>
+    <div class="julia-header">
+      <div class="julia-title">
+        <div class="julia-mark">J</div>
+        <div>
+          <h2>줄리아포뮬러 한국전용관</h2>
+          <p>국내 생산 · 국내 물류센터 출고 · 정식 유통 정품</p>
+        </div>
+      </div>
+      <a href="#" class="view-more">전체보기 →</a>
+    </div>
+    <div class="product-grid" id="juliaGrid"></div>
+  </div>
+</section>
+
+<!-- ============ CALCULATOR (SIGNATURE ELEMENT) ============ -->
+<section class="section calc-section" id="calc">
+  <div class="container calc-wrap">
+    <div class="calc-copy">
+      <div class="eyebrow">먼저 계산해보세요</div>
+      <h2>결제 전, 예상 금액을<br>바로 확인하세요</h2>
+      <p>일본 판매가만 입력하면 환율 환산가, 구매대행 수수료, 예상 관부가세까지 한 번에 계산해 드립니다. 숨겨진 비용 없이 투명하게 안내합니다.</p>
+      <ul>
+        <li>실시간 환율 자동 반영</li>
+        <li>수수료 8% 고정, 추가 비용 없음</li>
+        <li>15만원 초과 시 예상 관부가세 안내</li>
+      </ul>
+    </div>
+    <div class="calc-card">
+      <div class="calc-field">
+        <label>일본 판매가 (엔화 ¥)</label>
+        <div class="calc-input-row">
+          <div class="yen-input">
+            <span>¥</span>
+            <input type="number" id="yenInput" value="5000" min="0" oninput="updateCalc()">
+          </div>
+        </div>
+      </div>
+      <div class="calc-field">
+        <label>수량</label>
+        <div class="qty-stepper">
+          <button onclick="stepQty(-1)">−</button>
+          <input type="number" id="qtyInput" value="1" min="1" oninput="updateCalc()">
+          <button onclick="stepQty(1)">+</button>
+        </div>
+      </div>
+      <div class="calc-breakdown">
+        <div class="calc-row"><span>원화 환산가 (환율 1엔 = 9.5원)</span><span id="calcBase">0원</span></div>
+        <div class="calc-row"><span>구매대행 수수료 (8%)</span><span id="calcFee">0원</span></div>
+        <div class="calc-row"><span>국제배송비 (예상)</span><span id="calcShip">0원</span></div>
+        <div class="calc-row"><span>예상 관부가세</span><span id="calcTax">0원</span></div>
+        <div class="calc-row total"><span>예상 총 결제금액</span><span id="calcTotal">0원</span></div>
+      </div>
+      <div class="calc-note">* 이 계산기는 일본 구매대행 상품 기준입니다. 줄리아포뮬러 한국전용관 상품은 국내 정가 판매로 환율·수수료·관부가세가 적용되지 않습니다.<br>실제 금액은 상품 무게, 통관 시점 환율, 개인통관고유부호 적용 여부에 따라 달라질 수 있습니다. 정확한 금액은 주문 시 최종 확인됩니다.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BEST PRODUCTS ============ -->
+<section class="section" id="best">
+  <div class="container">
+    <div class="eyebrow">지금 가장 많이 찾는</div>
+    <h2 class="section-title">베스트 구매대행 상품</h2>
+    <p class="section-sub">최근 7일간 가장 많이 주문된 상품입니다.</p>
+    <div class="product-grid" id="bestGrid"></div>
+  </div>
+</section>
+
+<!-- ============ BEAUTY ============ -->
+<section class="section" id="beauty">
+  <div class="container">
+    <div class="eyebrow">카테고리</div>
+    <h2 class="section-title">뷰티</h2>
+    <p class="section-sub">일본 드럭스토어 인기 화장품·스킨케어</p>
+    <div class="product-grid" id="beautyGrid"></div>
+  </div>
+</section>
+
+<!-- ============ HEALTH ============ -->
+<section class="section" style="background:#fff; border-top:1px solid var(--line); border-bottom:1px solid var(--line);" id="health">
+  <div class="container">
+    <div class="eyebrow">카테고리</div>
+    <h2 class="section-title">건강식품</h2>
+    <p class="section-sub">일본 약국·드럭스토어 건강기능식품</p>
+    <div class="product-grid" id="healthGrid"></div>
+  </div>
+</section>
+
+<!-- ============ HOW IT WORKS ============ -->
+<section class="section">
+  <div class="container">
+    <div class="eyebrow" style="justify-content:center;">이용 방법</div>
+    <h2 class="section-title" style="text-align:center;">구매대행, 이렇게 진행됩니다</h2>
+    <p class="section-sub" style="text-align:center;">주문부터 배송까지 4단계로 안내해 드립니다.</p>
+    <div class="process-grid">
+      <div class="process-step">
+        <div class="step-num">01</div>
+        <h3>상품 선택 &amp; 견적확인</h3>
+        <p>원하는 상품 링크를 보내주시거나<br>몰 내 상품을 선택해 주세요.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">02</div>
+        <h3>결제</h3>
+        <p>최종 견적 확인 후<br>안전결제 시스템으로 결제합니다.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">03</div>
+        <h3>일본 현지 구매 &amp; 검수</h3>
+        <p>현지 담당자가 매장에서 직접<br>구매하고 상태를 확인합니다.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">04</div>
+        <h3>국제배송 &amp; 국내 수령</h3>
+        <p>실시간 배송조회로<br>도착까지 안심하고 기다리세요.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">
+          <svg class="logo-mark" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="JAPAN PICK 로고">
+            <circle cx="32" cy="32" r="29" fill="#fff" stroke="var(--gold)" stroke-width="1.6"/>
+            <path d="M32 5 A27 27 0 0 1 32 59 A13.5 13.5 0 0 1 32 32 A13.5 13.5 0 0 0 32 5 Z" fill="var(--vermillion)"/>
+            <path d="M32 5 A27 27 0 0 0 32 59 A13.5 13.5 0 0 0 32 32 A13.5 13.5 0 0 1 32 5 Z" fill="var(--indigo)"/>
+            <circle cx="32" cy="18.5" r="5.2" fill="#fff"/>
+            <circle cx="32" cy="18.5" r="5.2" fill="none" stroke="var(--vermillion)" stroke-width="1.3"/>
+          </svg>
+          JAPAN PICK
+        </div>
+        <p>일본 현지 구매대행 전문 서비스, JAPAN PICK입니다.<br>정품 검수부터 배송까지 책임지고 안내해 드립니다.</p>
+      </div>
+      <div>
+        <h4>고객지원</h4>
+        <ul>
+          <li><a href="#">공지사항</a></li>
+          <li><a href="#">자주 묻는 질문</a></li>
+          <li><a href="#">1:1 문의</a></li>
+          <li><a href="#">이용가이드</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>회사정보</h4>
+        <ul>
+          <li><a href="#">회사소개</a></li>
+          <li><a href="#">이용약관</a></li>
+          <li><a href="#">개인정보처리방침</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>고객센터</h4>
+        <ul>
+          <li>1588-0000</li>
+          <li>평일 09:00 - 18:00</li>
+          <li>(점심 12:00-13:00 제외)</li>
+          <li>주말·공휴일 휴무</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 JAPAN PICK. All rights reserved.</span>
+      <span>본 사이트는 데모(목업) 페이지이며 실제 결제는 이루어지지 않습니다.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ CART DRAWER ============ -->
+<div class="overlay" id="overlay"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-head">
+    <h3>장바구니</h3>
+    <span class="cart-close" id="cartClose">&times;</span>
+  </div>
+  <div class="cart-body" id="cartBody">
+    <div class="cart-empty">장바구니가 비어있습니다.</div>
+  </div>
+  <div class="cart-foot">
+    <div class="cart-total-row"><span>상품 합계</span><span id="cartSubtotal">0원</span></div>
+    <div class="cart-total-row"><span>구매대행 수수료</span><span id="cartFee">0원</span></div>
+    <div class="cart-total-row"><span>예상 배송비</span><span id="cartShip">0원</span></div>
+    <div class="cart-total-row grand"><span>총 예상 금액</span><span id="cartGrand">0원</span></div>
+    <button class="btn btn-primary btn-block" style="margin-top:16px;" onclick="showToast('데모 페이지에서는 실제 주문이 진행되지 않습니다.')">주문하기</button>
+  </div>
+</div>
+
+<!-- ============ PRODUCT MODAL ============ -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal-card">
+    <span class="modal-close" id="modalClose">&times;</span>
+    <div class="modal-visual" id="modalVisual"></div>
+    <div class="modal-info">
+      <div class="product-cat" id="modalCat"></div>
+      <h3 id="modalName"></h3>
+      <div class="modal-price-block" id="modalPriceBlock"></div>
+      <div class="modal-option">
+        <label>옵션 선택</label>
+        <select id="modalOption">
+          <option>기본 옵션</option>
+          <option>+ 사은품 포장 (선물용)</option>
+        </select>
+      </div>
+      <button class="btn btn-primary btn-block" id="modalAddBtn">장바구니에 담기</button>
+      <div class="modal-meta" id="modalMeta"></div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ---------- ICON LIBRARY (inline SVG per category) ---------- */
+const ICONS = {
+  julia: `<svg viewBox="0 0 64 64" fill="none" stroke="#E0980C" stroke-width="2.2"><rect x="20" y="10" width="24" height="44" rx="4" fill="#FFF6E3"/><rect x="24" y="16" width="16" height="10" rx="2" fill="#E0980C" opacity="0.25"/><path d="M28 30h8M28 36h8M28 42h5" stroke-linecap="round"/></svg>`,
+  beauty: `<svg viewBox="0 0 64 64" fill="none" stroke="#1499B8" stroke-width="2.2"><path d="M26 12h12v8H26z" fill="#E6F6F9"/><rect x="22" y="20" width="20" height="32" rx="5" fill="#fff"/><path d="M22 30h20" /></svg>`,
+  health: `<svg viewBox="0 0 64 64" fill="none" stroke="#17A673" stroke-width="2.2"><rect x="14" y="26" width="36" height="16" rx="8" fill="#E7F8F1"/><path d="M32 26v16" /></svg>`,
+  kitchen: `<svg viewBox="0 0 64 64" fill="none" stroke="#B5651D" stroke-width="2.2"><circle cx="28" cy="34" r="14" fill="#FBF0E4"/><path d="M50 24 42 32" stroke-linecap="round"/></svg>`,
+  appliance: `<svg viewBox="0 0 64 64" fill="none" stroke="#1499B8" stroke-width="2.2"><rect x="14" y="18" width="36" height="28" rx="4" fill="#E6F6F9"/><path d="M14 30h36M22 38h4" /></svg>`,
+  character: `<svg viewBox="0 0 64 64" fill="none" stroke="#F0483A" stroke-width="2.2"><circle cx="32" cy="28" r="14" fill="#FDEAE8"/><circle cx="27" cy="26" r="2" fill="#F0483A" stroke="none"/><circle cx="37" cy="26" r="2" fill="#F0483A" stroke="none"/><path d="M26 32q6 5 12 0" /></svg>`
+};
+
+/* ---------- PRODUCT DATA ---------- */
+// origin: 'japan' = 일본 구매대행 상품 (엔화 → 원화 환산 + 수수료 + 관부가세 적용)
+// origin: 'korea' = 국내 제조·유통 상품 (원화 정가 판매, 환율/수수료/관부가세 없음)
+const PRODUCTS = [
+  {id:1, name:'줄리아포뮬러 리페어 헤어에센스 80ml', cat:'줄리아포뮬러', catKey:'julia', origin:'korea', krw:32000, rating:4.9, reviews:312, badge:'BEST', group:'julia'},
+  {id:2, name:'줄리아포뮬러 스칼프 딥클렌징 토닉', cat:'줄리아포뮬러', catKey:'julia', origin:'korea', krw:28000, rating:4.8, reviews:201, badge:'인기', group:'julia'},
+  {id:3, name:'줄리아포뮬러 나이트 리커버리 크림', cat:'줄리아포뮬러', catKey:'julia', origin:'korea', krw:39000, rating:4.9, reviews:158, badge:null, group:'julia'},
+  {id:4, name:'줄리아포뮬러 헤어 미스트 150ml', cat:'줄리아포뮬러', catKey:'julia', origin:'korea', krw:23000, rating:4.7, reviews:97, badge:null, group:'julia'},
+  {id:5, name:'시세이도 얼리솔 UV 선크림', cat:'뷰티', catKey:'beauty', origin:'japan', jpy:2800, rating:4.8, reviews:441, badge:'BEST', group:'beauty'},
+  {id:6, name:'DHC 약용 딥클렌징 오일', cat:'뷰티', catKey:'beauty', origin:'japan', jpy:1980, rating:4.7, reviews:389, badge:null, group:'beauty'},
+  {id:7, name:'하다라보 고쿠쥰 히알루론 로션', cat:'뷰티', catKey:'beauty', origin:'japan', jpy:1450, rating:4.6, reviews:276, badge:null, group:'beauty'},
+  {id:8, name:'DHC 비타민C 90일분', cat:'건강식품', catKey:'health', origin:'japan', jpy:1200, rating:4.7, reviews:520, badge:'BEST', group:'health'},
+  {id:9, name:'산토리 세사민 EX 90정', cat:'건강식품', catKey:'health', origin:'japan', jpy:3400, rating:4.8, reviews:334, badge:null, group:'health'},
+  {id:10, name:'오츠카 네이처메이드 종합비타민', cat:'건강식품', catKey:'health', origin:'japan', jpy:1680, rating:4.6, reviews:198, badge:null, group:'health'},
+  {id:11, name:'일본산 티타늄 코팅 프라이팬 26cm', cat:'주방용품', catKey:'kitchen', origin:'japan', jpy:6500, rating:4.7, reviews:88, badge:null, group:'best'},
+  {id:12, name:'발뮤다 더 토스터 (K05A)', cat:'생활가전', catKey:'appliance', origin:'japan', jpy:28000, rating:4.9, reviews:145, badge:'인기', group:'best'},
+  {id:13, name:'스누피 미니 피규어 세트', cat:'캐릭터/굿즈', catKey:'character', origin:'japan', jpy:1980, rating:4.8, reviews:262, badge:null, group:'best'},
+  {id:14, name:'무인양품 휴대용 가습기', cat:'생활가전', catKey:'appliance', origin:'japan', jpy:3200, rating:4.5, reviews:76, badge:null, group:'best'},
+];
+
+const EX_RATE = 9.5;   // 1엔 = 9.5원 (데모용 고정값)
+const FEE_RATE = 0.08; // 구매대행 수수료 8% (일본 구매대행 상품에만 적용)
+const SHIP_FLAT = 6000;    // 국제배송비 예상 (일본 구매대행 상품, 1건 기준)
+const SHIP_DOMESTIC = 3000; // 국내배송비 (한국전용관 상품, 1건 기준)
+const TAX_THRESHOLD = 150000; // 관부가세 예상 기준 (일본 구매대행 상품에만 적용)
+
+function krwBase(jpy){ return Math.round(jpy * EX_RATE); }
+function feeOf(base){ return Math.round(base * FEE_RATE); }
+function taxOf(base, fee){
+  const dutyBase = base + fee;
+  return dutyBase > TAX_THRESHOLD ? Math.round(dutyBase * 0.1) : 0;
+}
+function won(n){ return n.toLocaleString('ko-KR') + '원'; }
+
+// 상품 1개 기준 최종 결제가 계산 (원산지에 따라 분기)
+function priceOf(p, qty){
+  qty = qty || 1;
+  if(p.origin === 'korea'){
+    const base = p.krw * qty;
+    return { base, fee:0, final: base };
+  }
+  const base = krwBase(p.jpy) * qty;
+  const fee = feeOf(base);
+  return { base, fee, final: base + fee };
+}
+
+function renderCard(p){
+  const { base, fee, final } = priceOf(p, 1);
+  const isKorea = p.origin === 'korea';
+  return `
+  <div class="product-card" onclick="openModal(${p.id})">
+    <div class="product-thumb" style="background:${p.catKey==='julia' ? '#FFF6E3' : '#F5F3EE'}">
+      ${p.badge ? `<span class="badge ${p.catKey==='julia'?'gold':''}">${p.badge}</span>` : ''}
+      ${ICONS[p.catKey]}
+    </div>
+    <div class="product-info">
+      <div class="product-cat">${p.cat}${isKorea ? ' <span class="origin-tag">국내산</span>' : ''}</div>
+      <div class="product-name">${p.name}</div>
+      ${isKorea
+        ? `<div class="price-final">${won(final)}</div>`
+        : `<div class="price-jp">일본가 ¥${p.jpy.toLocaleString()}</div><div class="price-final"><small>구매대행가</small> ${won(final)}</div>`
+      }
+      <div class="rating"><span class="stars">★★★★★</span> ${p.rating} (${p.reviews})</div>
+    </div>
+  </div>`;
+}
+
+function renderGrid(elId, list){
+  document.getElementById(elId).innerHTML = list.map(renderCard).join('');
+}
+renderGrid('bestGrid', PRODUCTS.filter(p=>p.badge==='BEST' || p.group==='best').slice(0,8));
+renderGrid('juliaGrid', PRODUCTS.filter(p=>p.group==='julia'));
+renderGrid('beautyGrid', PRODUCTS.filter(p=>p.group==='beauty'));
+renderGrid('healthGrid', PRODUCTS.filter(p=>p.group==='health'));
+
+/* ---------- CALCULATOR LOGIC ---------- */
+function stepQty(delta){
+  const q = document.getElementById('qtyInput');
+  q.value = Math.max(1, parseInt(q.value||1) + delta);
+  updateCalc();
+}
+function updateCalc(){
+  const yen = Math.max(0, parseFloat(document.getElementById('yenInput').value) || 0);
+  const qty = Math.max(1, parseInt(document.getElementById('qtyInput').value) || 1);
+  const base = krwBase(yen) * qty;
+  const fee = feeOf(base);
+  const ship = SHIP_FLAT;
+  const tax = taxOf(base, fee);
+  const total = base + fee + ship + tax;
+  document.getElementById('calcBase').textContent = won(base);
+  document.getElementById('calcFee').textContent = won(fee);
+  document.getElementById('calcShip').textContent = won(ship);
+  document.getElementById('calcTax').textContent = tax > 0 ? won(tax) : '해당없음';
+  document.getElementById('calcTotal').textContent = won(total);
+}
+updateCalc();
+
+/* ---------- CART LOGIC ---------- */
+let cart = [];
+function findProduct(id){ return PRODUCTS.find(p=>p.id===id); }
+
+function addToCart(id){
+  const existing = cart.find(c=>c.id===id);
+  if(existing){ existing.qty += 1; } else { cart.push({id, qty:1}); }
+  renderCart();
+  showToast('장바구니에 상품을 담았습니다.');
+}
+function removeFromCart(id){
+  cart = cart.filter(c=>c.id!==id);
+  renderCart();
+}
+function renderCart(){
+  const body = document.getElementById('cartBody');
+  const countEl = document.getElementById('cartCount');
+  const totalQty = cart.reduce((s,c)=>s+c.qty,0);
+  countEl.textContent = totalQty;
+
+  if(cart.length === 0){
+    body.innerHTML = '<div class="cart-empty">장바구니가 비어있습니다.</div>';
+  } else {
+    body.innerHTML = cart.map(c=>{
+      const p = findProduct(c.id);
+      const { final } = priceOf(p, c.qty);
+      return `
+      <div class="cart-item">
+        <div class="cart-item-thumb">${ICONS[p.catKey]}</div>
+        <div class="cart-item-info">
+          <div class="cat">${p.cat}${p.origin==='korea' ? ' <span class="origin-tag">국내산</span>' : ''}</div>
+          <h4>${p.name}</h4>
+          <div class="cart-item-price">${won(final)} <span style="color:var(--muted); font-weight:500;">× ${c.qty}개</span></div>
+          <div class="cart-item-remove" onclick="removeFromCart(${p.id})">삭제</div>
+        </div>
+      </div>`;
+    }).join('');
+  }
+
+  let subtotal = 0, feeTotal = 0, hasJapan = false, hasKorea = false;
+  cart.forEach(c=>{
+    const p = findProduct(c.id);
+    const { base, fee } = priceOf(p, c.qty);
+    subtotal += base;
+    feeTotal += fee;
+    if(p.origin === 'korea'){ hasKorea = true; } else { hasJapan = true; }
+  });
+  const shipTotal = (hasJapan ? SHIP_FLAT : 0) + (hasKorea ? SHIP_DOMESTIC : 0);
+  const grand = subtotal + feeTotal + shipTotal;
+  document.getElementById('cartSubtotal').textContent = won(subtotal);
+  document.getElementById('cartFee').textContent = won(feeTotal);
+  document.getElementById('cartShip').textContent = won(shipTotal);
+  document.getElementById('cartGrand').textContent = won(grand);
+}
+
+const cartDrawer = document.getElementById('cartDrawer');
+const overlay = document.getElementById('overlay');
+document.getElementById('cartBtn').addEventListener('click', e=>{
+  e.preventDefault();
+  cartDrawer.classList.add('open');
+  overlay.classList.add('open');
+});
+document.getElementById('cartClose').addEventListener('click', closeCart);
+overlay.addEventListener('click', ()=>{ closeCart(); closeModal(); });
+function closeCart(){ cartDrawer.classList.remove('open'); overlay.classList.remove('open'); }
+
+/* ---------- MODAL LOGIC ---------- */
+const modalOverlay = document.getElementById('modalOverlay');
+let currentModalId = null;
+function openModal(id){
+  const p = findProduct(id);
+  currentModalId = id;
+  const isKorea = p.origin === 'korea';
+  document.getElementById('modalCat').textContent = p.cat + (isKorea ? ' · 국내산' : '');
+  document.getElementById('modalName').textContent = p.name;
+  const { base, fee, final } = priceOf(p, 1);
+
+  document.getElementById('modalPriceBlock').innerHTML = isKorea
+    ? `<div class="calc-row total" style="border-top:none; padding-top:6px;"><span>판매가</span><span>${won(final)}</span></div>`
+    : `<div class="calc-row"><span>일본 판매가</span><span>¥${p.jpy.toLocaleString()}</span></div>
+       <div class="calc-row total" style="border-top:none; padding-top:6px;"><span>구매대행 최종가</span><span>${won(final)}</span></div>`;
+
+  document.getElementById('modalMeta').innerHTML = isKorea
+    ? `<p><strong>예상 배송기간</strong> 결제 완료 후 1~2일 (국내 물류센터 출고)</p>
+       <p style="margin-top:8px;"><strong>관세/부가세 안내</strong> 국내 정식 유통 제품으로 관부가세가 발생하지 않습니다.</p>`
+    : `<p><strong>예상 배송기간</strong> 결제 완료 후 7~12일 (일본 현지 구매 2~3일 + 국제배송 5~9일)</p>
+       <p style="margin-top:8px;"><strong>관부가세 안내</strong> 합산 통관금액 15만원 초과 시 관세·부가세가 별도 부과될 수 있습니다.</p>`;
+
+  document.getElementById('modalVisual').innerHTML = ICONS[p.catKey];
+  modalOverlay.classList.add('open');
+}
+function closeModal(){ modalOverlay.classList.remove('open'); currentModalId = null; }
+document.getElementById('modalClose').addEventListener('click', closeModal);
+document.getElementById('modalAddBtn').addEventListener('click', ()=>{
+  if(currentModalId){ addToCart(currentModalId); closeModal(); }
+});
+
+/* ---------- TOAST ---------- */
+let toastTimer;
+function showToast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>t.classList.remove('show'), 2400);
+}
+
+/* ---------- NAV ACTIVE STATE ---------- */
+document.querySelectorAll('.category-nav a').forEach(link=>{
+  link.addEventListener('click', ()=>{
+    document.querySelectorAll('.category-nav a').forEach(l=>l.classList.remove('active'));
+    link.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
